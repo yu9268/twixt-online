@@ -1,0 +1,9 @@
+body {
+    font-family: system-ui, sans-serif;
+    text-align: center;
+}
+
+canvas#board {
+    border: 1px solid #ccc;
+    margin-top: 16px;
+}
