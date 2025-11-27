@@ -1,0 +1,178 @@
+/* ==============================
+   基本レイアウト
+================================ */
+body {
+    margin: 0;
+    padding: 20px 0;
+    font-family: system-ui, sans-serif;
+    text-align: center;
+    background: #f7f7f7;
+}
+
+h1 {
+    margin-bottom: 16px;
+    font-size: 1.8rem;
+}
+
+/* ==============================
+   ボタン（撤退 / 戻す / リセット）
+================================ */
+#undoBtn,
+#resetBtn,
+#leaveBtn {
+    padding: 10px 18px;
+    margin: 8px 6px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#undoBtn {
+    background: #e0e0e0;
+    color: #333;
+}
+
+#resetBtn {
+    background: #ff5c5c;
+    color: white;
+}
+
+#leaveBtn {
+    background: #555;
+    color: white;
+    margin-top: 16px;
+    font-size: 1.05rem;
+}
+
+/* ==============================
+   キャンバス
+================================ */
+#board {
+    margin-top: 16px;
+    border: 1px solid #ccc;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==============================
+   右上：ルーム情報 + ボタン（1つの枠にまとめる）
+================================ */
+#roomInfoWrapper {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    background: rgba(0,0,0,0.6);
+    padding: 6px 12px;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.9rem;
+    z-index: 9999;
+}
+
+.small-btn {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 4px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* ==============================
+   メンバー一覧モーダル
+================================ */
+.modal.hidden {
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 80%;
+    max-width: 360px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#memberList {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 20px;
+    font-size: 1.1rem;
+}
+
+.close-btn {
+    background: #444;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+}
+
+/* ==============================
+   スマホ最適化
+================================ */
+@media (max-width: 480px) {
+
+    #undoBtn,
+    #resetBtn,
+    #leaveBtn {
+        width: 90%;
+        max-width: 320px;
+        padding: 14px 0;
+        font-size: 1.1rem;
+        margin: 12px auto;
+        display: block;
+    }
+
+    #board {
+        width: 95vw;
+        height: 95vw;
+    }
+
+    #roomInfoWrapper {
+        font-size: 1rem;
+        padding: 8px 14px;
+    }
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 99999;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+.toast.hidden {
+    display: none;
+}

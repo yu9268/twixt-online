@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <title>Twixt 対戦ルーム</title>
+    <link rel="stylesheet" href="/css/game.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+
+    <h1>Twixt 対戦</h1>
+
+    <!-- 右上ルーム情報（固定） -->
+    <div id="roomInfoWrapper">
+        <div class="roomwrap">
+            <span id="roomIdText">ROOM: ???</span>
+        </div>
+        <div class="btnwrap">
+            <button id="memberListBtn" class="small-btn">👥</button>
+            <button id="copyRoomIdBtn" class="small-btn">📋</button>
+        </div>
+    </div>
+
+    <!-- メンバー一覧モーダル -->
+    <div id="memberModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>参加者一覧</h2>
+            <ul id="memberList"></ul>
+            <button id="closeMemberModal" class="close-btn">閉じる</button>
+        </div>
+    </div>
+
+    <!-- 操作ボタン -->
+    <div class="control-buttons">
+        <button id="undoBtn">一つ戻る</button>
+        <button id="resetBtn">リセット</button>
+    </div>
+
+    <!-- 盤面 -->
+    <canvas id="board" width="800" height="800"></canvas>
+
+    <!-- 退出ボタン -->
+    <button id="leaveBtn">退出</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/constants.js"></script>
+    <script src="/js/renderer.js"></script>
+    <script src="/js/client.js"></script>
+    <div id="toast" class="toast hidden"></div>
+
+</body>
+</html>
