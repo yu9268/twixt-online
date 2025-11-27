@@ -1,21 +1,3 @@
-function fitCanvasToDisplay() {
-    const canvas = document.getElementById("board");
-    const rect = canvas.getBoundingClientRect();
-
-    // CSSの見た目サイズを取得して実ピクセルに合わせる
-    canvas.width = rect.width * window.devicePixelRatio;
-    canvas.height = rect.height * window.devicePixelRatio;
-
-    const ctx = canvas.getContext("2d");
-    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-}
-
-// 初期化時に実行
-fitCanvasToDisplay();
-
-// 画面回転やサイズ変更にも対応
-window.addEventListener("resize", fitCanvasToDisplay);
-
 
 const params = new URLSearchParams(location.search);
 const roomId = params.get("id");
@@ -39,8 +21,14 @@ canvas.addEventListener("click", (e) => {
     if (winner) return;
 
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+
+    // CSSピクセル → 内部ピクセル補正
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
+
 
     const g = getGridPos(x, y);
     if (!g) return;

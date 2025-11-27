@@ -13,8 +13,13 @@ function getGridPos(x, y) {
 
 canvas.addEventListener("mousemove", (e) => {
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+
+    // CSSピクセル → canvas内部ピクセル補正
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
 
     const g = getGridPos(x, y);
 
@@ -26,6 +31,31 @@ canvas.addEventListener("mousemove", (e) => {
 
     draw();
 });
+
+canvas.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+
+    // 同じ補正
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    const x = (touch.clientX - rect.left) * scaleX;
+    const y = (touch.clientY - rect.top) * scaleY;
+
+    const g = getGridPos(x, y);
+
+    if (g && g.col >= 1 && g.col <= 22 && g.row >= 1 && g.row <= 22) {
+        hover = g;
+    } else {
+        hover = null;
+    }
+
+    draw();
+}, { passive: false });
+
+
 
 function draw() {
     if (!board) return;
